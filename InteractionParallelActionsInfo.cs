@@ -5,7 +5,7 @@ using Trell.Interaction.Core;
 
 namespace Trell.Interaction
 {
-    public class ActionsInfo : SerializedMonoBehaviour
+    public class InteractionParallelActionsInfo : SerializedMonoBehaviour, IInteractionActionsInfo
     {
         [SerializeField] private List<IAction> _actions;
         [SerializeField] private List<IChecker> _checkers;
