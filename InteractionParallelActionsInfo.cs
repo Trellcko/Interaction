@@ -3,7 +3,7 @@ using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using Trell.Interaction.Core;
 
-namespace Trell.Interaction
+namespace Trell.Interaction.InteractActions
 {
     public class InteractionParallelActionsInfo : SerializedMonoBehaviour, IInteractionActionsInfo
     {

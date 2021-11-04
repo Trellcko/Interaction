@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Trell.Interaction
+namespace Trell.Interaction.Interacting
 {
 
     [RequireComponent(typeof(Collider2D))]

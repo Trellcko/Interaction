@@ -2,35 +2,38 @@ using System.Collections.Generic;
 using Trell.Interaction.Core;
 using UnityEngine;
 
-public class Interactions—onsistentlyActionsInfo : MonoBehaviour, IInteractionActionsInfo
+namespace Trell.Interaction.InteractActions
 {
-    [SerializeField] private Queue<IDelayAction> _actions;
-    [SerializeField] private List<IChecker> _checkers;
-
-    public bool TryDoActions()
+    public class Interactions—onsistentlyActionsInfo : MonoBehaviour, IInteractionActionsInfo
     {
-        foreach (var checer in _checkers)
+        [SerializeField] private Queue<IDelayAction> _actions;
+        [SerializeField] private List<IChecker> _checkers;
+
+        public bool TryDoActions()
         {
-            if (checer.Check() == false)
+            foreach (var checer in _checkers)
             {
-                return false;
+                if (checer.Check() == false)
+                {
+                    return false;
+                }
             }
+
+            DoNext();
+
+            return true;
         }
 
-        DoNext();
-
-        return true;
-    }
-
-    private void DoNext()
-    {
-        if (_actions.Count == 0)
+        private void DoNext()
         {
-            return;
-        }
+            if (_actions.Count == 0)
+            {
+                return;
+            }
 
-        var action = _actions.Dequeue();
-        action.Completed += DoNext;
-        action.Do();
+            var action = _actions.Dequeue();
+            action.Completed += DoNext;
+            action.Do();
+        }
     }
 }
