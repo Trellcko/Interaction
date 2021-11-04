@@ -1,13 +1,12 @@
-using UnityEngine;
-using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using Trell.Interaction.Core;
+using UnityEngine;
 
 namespace Trell.Interaction.InteractActions
 {
-    public class InteractionParallelActionsInfo : SerializedMonoBehaviour, IInteractionActionsInfo
+    public class ÑonsistentlyActionsInfo : MonoBehaviour, IInteractionActionsInfo
     {
-        [SerializeField] private List<IAction> _actions;
+        [SerializeField] private Queue<IDelayAction> _actions;
         [SerializeField] private List<IChecker> _checkers;
 
         public bool TryDoActions()
@@ -19,11 +18,22 @@ namespace Trell.Interaction.InteractActions
                     return false;
                 }
             }
-            foreach (var action in _actions)
-            {
-                action.Do();
-            }
+
+            DoNext();
+
             return true;
+        }
+
+        private void DoNext()
+        {
+            if (_actions.Count == 0)
+            {
+                return;
+            }
+
+            var action = _actions.Dequeue();
+            action.Completed += DoNext;
+            action.Do();
         }
     }
 }

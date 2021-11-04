@@ -1,7 +1,7 @@
 using UnityEngine;
 using Trell.Interaction.Core;
 
-namespace Trell.Interaction
+namespace Trell.Interaction.Checkers
 {
     public class ToggleChecker : MonoBehaviour, IChecker
     {

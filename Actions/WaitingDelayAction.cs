@@ -5,19 +5,19 @@ using UnityEngine;
 
 namespace Trell.Interaction.Actions
 {
-    public class RemoveGameobjectDelayAction : MonoBehaviour, IDelayAction
+    public class WaitingDelayAction : MonoBehaviour, IDelayAction
     {
-        [SerializeField] Waiter _waiter;
+        [SerializeField] private Waiter _waiter;
 
-        [SerializeField] GameObject _target;
+        [SerializeField] private IAction _action;
 
         public event Action Completed;
 
         public void Do()
         {
             _waiter.Run(() => 
-            { 
-                Destroy(_target);
+            {
+                _action.Do();
                 Completed?.Invoke(); 
                 }
             );
