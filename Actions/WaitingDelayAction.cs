@@ -16,7 +16,7 @@ namespace Trell.Interaction.Actions
         public void Do()
         {
             _waiter.Run(() => 
-            {
+                {
                 _action.Do();
                 Completed?.Invoke(); 
                 }

@@ -4,7 +4,7 @@ using System;
 
 namespace Trell.Interaction.Actions
 {
-    //Wrapper for Action to use in ConsistentlyActionInfo
+    //Wrapper for Action without delay to use in ConsistentlyActionInfo
     public class DelayAction : MonoBehaviour, IDelayAction
     {
         [SerializeField] private IAction _action;
